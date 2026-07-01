@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: ums-backend
+    runtime: node
+    plan: standard
+    buildCommand: npm install
+    startCommand: node src/server.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: MONGODB_URI
+        scope: build
+      - key: JWT_SECRET
+        scope: build
+      - key: CORS_ORIGIN
+        value: https://your-frontend.vercel.app
+databases:
+  - name: ums-mongodb
+    databaseName: ums_production
+    plan: standard
